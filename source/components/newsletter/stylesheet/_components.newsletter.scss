@@ -1,0 +1,50 @@
+$newsletter-transition-time: 200ms !default;
+$newsletter-transition-ease: $ease-in-out-quad !default;
+
+.c-newsletter {
+
+  &-form-error {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    z-index: 1;
+
+    // Center the elements
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &-formsection.hidden {
+    visibility: hidden;
+    opacity: 0;
+    height: 0;
+    transform: translateY(100px);
+  }
+
+  &-formsection.visible {
+    visibility: visible;
+    opacity: 1;
+    height: auto;
+    transform: translateY(1px);
+    transition: $newsletter-transition-time $newsletter-transition-ease;
+    transition-property: transform opacity;
+  }
+
+  &-title {
+    margin-bottom: $global-spacing-sm;
+  }
+
+  &-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+}

@@ -1,0 +1,82 @@
+$toast-max-width: 400px !default;
+$toast-gutter: $global-spacing * 2 !default;
+$toast-gutter-small: $global-spacing * 2 !default;
+$toast-transition-time: 400ms !default;
+$toast-transition-ease: $ease-in-out-quad !default;
+$toast-min-width-media-query: ($toast-max-width + $toast-gutter-small * 2) - 0.5;
+
+.c-toast {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    z-index: 9999;
+    pointer-events: none;
+    visibility: hidden;
+}
+
+.toast--success {
+  .toast__content {
+    background-color: #00FF00;
+  }
+}
+
+.toast--warning {
+  .toast__content {
+    background-color: #ffc107;
+  }
+}
+
+.toast--error {
+  .toast__content {
+    background-color: #ff5454;
+    color: #fff;
+  }
+}
+
+.toast--is-showing {
+  opacity: 1;
+  transition: $toast-transition-time $toast-transition-ease;
+  transition-property: opacity;
+  visibility: visible;
+
+  .toast__content {
+    opacity: 1;
+    transition: $toast-transition-time $toast-transition-ease 100ms,
+      $toast-transition-time $toast-transition-ease;
+    transition-property: transform, opacity;
+  }
+}
+
+.toast__container {
+  z-index: 1;
+  left: 50%;
+  max-height: 100%;
+  overflow: auto;
+  position: absolute;
+  transform: translate3d(-50%, -50%, 0);
+  bottom: 5%;
+  width: 100%;
+}
+
+.toast__content {
+  position: relative;
+  z-index: 1;
+  max-width: $toast-max-width;
+  margin: $toast-gutter-small;
+  width: auto;
+  height: auto;
+  opacity: 0;
+  padding: $toast-gutter;
+  background-color: $color-white;
+  transition: $toast-transition-time $toast-transition-ease,
+    $toast-transition-time $toast-transition-ease;
+  transition-property: transform, opacity;
+
+  @include screen-min-width($toast-min-width-media-query) {
+    max-width: calc(#{$toast-max-width} - #{$toast-gutter-small * 2});
+    margin: $toast-gutter-small auto;
+  }
+}

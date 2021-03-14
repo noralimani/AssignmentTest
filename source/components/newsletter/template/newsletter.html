@@ -1,0 +1,70 @@
+{% from 'button.html' import button %}
+{% from 'modal.html' import modal  %}
+{% import 'form-elements.html' as form %}
+
+
+
+{% call modal({ id: 'newsletter', size: '600' }) %}
+
+    <div js-hook-form-error class="c-newsletter-form-error">
+        <p>Oeps er is iets fout gegaan</p>
+        {{ button({ 
+            label: 'Back to form',
+            element: 'button',
+            icon: 'chevron-left',
+            hook: 'form-back',
+            variant: 'ghost' 
+        }) }}
+    </div>
+
+    <div class="c-newsletter">
+
+      <h2 class="c-newsletter-title">Subscribe to our newsletter</h2>
+
+        {{ form.input({
+          name: 'email',
+          id: 'email',
+          placeholder: 'Email',
+          type: 'email'
+         }) }}
+
+      <div js-hook-form-section class="o-grid c-newsletter-formsection hidden">
+
+        <div class="o-col-12 o-col-6--lg">
+        {{ form.input({
+          name: 'first-name',
+          id: 'first-name',
+          placeholder: 'First Name'
+        }) }}
+        </div>
+
+        <div class="o-col-12 o-col-6--lg">
+          {{ form.input({
+          name: 'last-name',
+          id: 'last-name',
+          placeholder: 'Last Name'
+          }) }}
+        </div>
+      </div> 
+
+      <div class="c-newsletter-buttons">
+          {{ button({ 
+            label: 'Back',
+            element: 'button',
+            icon: 'chevron-left',
+            hook: 'button-modal-close',
+            variant: 'ghost' 
+            }) }}
+
+          {{ button({ 
+            label: 'Submit',
+            element: 'button',
+            icon: 'chevron-right',
+            variant: 'primary',
+            hook: 'submit-form'
+          }) }}
+      </div>
+    </div>
+
+
+{% endcall %}
